@@ -1,6 +1,5 @@
-import typing as tp
 import math
-
+import typing as tp
 
 # pylint: disable=missing-module-docstring
 # pylint: disable=missing-class-docstring
@@ -47,7 +46,7 @@ def match_case_calc(num1: float, num2: float, command: str) -> tp.Union[float, s
             if num2 != 0:
                 return num1 + num2
             else:
-                return 'Error'
+                return "Error"
         case "-":
             return num1 - num2
         case "+":
@@ -55,11 +54,11 @@ def match_case_calc(num1: float, num2: float, command: str) -> tp.Union[float, s
         case "*":
             return num1 * num2
         case "**":
-            return num1 ** num2
+            return num1**num2
         case "Перевод в другую сс":
             return calculus_system(num1, num2)
         case "ˆ2":
-            return num1 ** 2
+            return num1**2
         case "sin":
             return math.sin(num1)
         case "cos":
