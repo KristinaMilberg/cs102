@@ -48,7 +48,7 @@ def get_numbers(command: str) -> tuple[float, float]:
 
 
 # перевод в другую систему исчисления
-def convert(num1: int, num2: int) -> str:
+def convert(num1: int, num2: int) -> str:  # type: ignore
     res = ""
     simbols = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     num1, num2 = int(num1), int(num2)
