@@ -15,7 +15,6 @@ def encrypt_caesar(plaintext: str, shift: int = 3) -> str:
     # pylint: disable=missing-class-docstring
     # pylint: disable=missing-function-docstring
 
-
     ciphertext = ""
     for item in plaintext:
         if item.isupper():  # проверка, является ли символ прописным
