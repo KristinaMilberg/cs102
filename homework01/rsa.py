@@ -2,7 +2,6 @@ import random
 import typing as tp
 from math import sqrt
 
-
 # pylint: disable=missing-module-docstring
 # pylint: disable=missing-class-docstring
 # pylint: disable=missing-function-docstring
