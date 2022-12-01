@@ -2,10 +2,6 @@ import random
 import typing as tp
 from math import sqrt
 
-# pylint: disable=missing-module-docstring
-# pylint: disable=missing-class-docstring
-# pylint: disable=missing-function-docstring
-
 
 def is_prime(n: int) -> bool:
     """
@@ -45,18 +41,16 @@ def multiplicative_inverse(e: int, phi: int) -> int:
     >>> multiplicative_inverse(7, 40)
     23
     """
-    lst = []
-    number_1 = phi
-    number_2 = e
-    while number_1 % number_2 != 0:
-        lst.append(number_1 // number_2)
-        number_1, number_2 = number_2, number_1 % number_2
-    x = 0
-    y = 1
-    length_lst = len(lst)
-    for i in range(len(lst)):
-        x, y = y, x - y * lst[length_lst - 1 - i]
-    return y % phi
+
+    def egcd(a, b):
+        if a == 0:
+            return b, 0, 1
+        else:
+            g, y, x = egcd(b % a, a)
+            return g, x - (b // a) * y, y
+
+    g, x, y = egcd(e, phi)
+    return x % phi
 
 
 def generate_keypair(p: int, q: int) -> tp.Tuple[tp.Tuple[int, int], tp.Tuple[int, int]]:
@@ -65,10 +59,8 @@ def generate_keypair(p: int, q: int) -> tp.Tuple[tp.Tuple[int, int], tp.Tuple[in
     elif p == q:
         raise ValueError("p and q cannot be equal")
 
-    # n = pq
     n = p * q
 
-    # phi = (p-1)(q-1)
     phi = (p - 1) * (q - 1)
 
     # Choose an integer e such that e and phi(n) are coprime
@@ -121,7 +113,3 @@ if __name__ == "__main__":
     print("Decrypting message with public key ", public, " . . .")
     print("Your message is:")
     print(decrypt(public, encrypted_msg))
-
-# pylint: disable=missing-module-docstring
-# pylint: disable=missing-class-docstring
-# pylint: disable=missing-function-docstring
