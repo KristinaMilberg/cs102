@@ -41,15 +41,14 @@ def multiplicative_inverse(e: int, phi: int) -> int:
     >>> multiplicative_inverse(7, 40)
     23
     """
-
-    def egcd(a, b):
-        if a == 0:
-            return b, 0, 1
-        else:
-            g, y, x = egcd(b % a, a)
-            return g, x - (b // a) * y, y
-
-    g, x, y = egcd(e, phi)
+    num_1 = phi
+    num_2 = e
+    x = 0
+    y = 1
+    while num_2:
+        division = num_1 // num_2
+        num_1, num_2 = num_2, num_1 % num_2
+        x, y = y, x - y * division
     return x % phi
 
 
