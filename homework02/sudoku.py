@@ -174,14 +174,13 @@ def generate_sudoku(N: int) -> tp.List[tp.List[str]]:  # type: ignore
     >>> check_solution(solution)
     True
     """
-    grid = [["." for j in range(9)] for i in range(9)]
-    grid = solve(grid)  # type: ignore
+    grid = solve([["."] * 9 for _ in range(9)])
     not_visited = {(i, j) for i in range(9) for j in range(9)}
     if N > 81:
         N = 81
     for i in range(81 - N):
         x, y = not_visited.pop()
-        grid[x][y] = "."
+        grid[x][y] = "."  # type: ignore
     return grid  # type: ignore
 
 
