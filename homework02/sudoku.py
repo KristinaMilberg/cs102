@@ -174,11 +174,18 @@ def generate_sudoku(N: int) -> tp.List[tp.List[str]]:  # type: ignore
     >>> check_solution(solution)
     True
     """
-    grid = [["."] * 9 for x in range(9)]
-    sudoku = solve(grid)
-    probely = list(" " * N + "." * (81 - N))
-    random.shuffle(probely)
-    return [[sudoku[i][j] if probely[i * 9 + j] == " " else "." for j in range(9)] for i in range(9)]  # type: ignore
+    grid = [["." for j in range(9)] for i in range(9)]
+    grid = solve(grid)  # type: ignore
+    not_visited = {(i, j) for i in range(9) for j in range(9)}
+    if N > 81:
+        N = 81
+    for i in range(81 - N):
+        # ind = random.randint(0, len(not_visited) - 1)
+        x, y = not_visited.pop()
+        # a = not_visited[ind]
+        grid[x][y] = "."
+        # not_visited.pop(ind)
+    return grid  # type: ignore
 
 
 if __name__ == "__main__":
