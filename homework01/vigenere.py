@@ -9,30 +9,13 @@ def encrypt_vigenere(plaintext: str, keyword: str) -> str:
     'LXFOPVEFRNHR'
     """
     ciphertext = ""
-    if len(plaintext) != len(keyword):
-        for i in range(0, len(plaintext) - len(keyword)):
-            keyword = keyword + keyword[i]
-    for i in range(0, len(plaintext)):
-        if 64 < ord(plaintext[i]) < 91:
-            if ord(keyword[i]) > 91:
-                number_letter = ord(keyword[i]) - 32
-            else:
-                number_letter = ord(keyword[i])
-            sym = number_letter - 65 + ord(plaintext[i])
-            if sym > 90:
-                sym = sym - 26
-            ciphertext = ciphertext + chr(sym)
-        elif 96 < ord(plaintext[i]) < 123:
-            if ord(keyword[i]) < 96:
-                number_letter = ord(keyword[i]) + 32
-            else:
-                number_letter = ord(keyword[i])
-            sym = number_letter - 97 + ord(plaintext[i])
-            if sym > 122:
-                sym = sym - 26
-            ciphertext = ciphertext + chr(sym)
+    for i, letter in enumerate(plaintext):
+        if "A" <= letter <= "Z":
+            ciphertext += chr(ord("A") + (ord(letter) + ord(keyword[i % len(keyword)]) - 2 * ord("A")) % 26)
+        elif "a" <= letter <= "z":
+            ciphertext += chr(ord("a") + (ord(letter) + ord(keyword[i % len(keyword)]) - 2 * ord("a")) % 26)
         else:
-            ciphertext = ciphertext + plaintext[i]
+            ciphertext += plaintext[i]
     return ciphertext
 
 
@@ -47,33 +30,11 @@ def decrypt_vigenere(ciphertext: str, keyword: str) -> str:
     'ATTACKATDAWN'
     """
     plaintext = ""
-    if len(ciphertext) != len(keyword):
-        for i in range(0, len(ciphertext) - len(keyword)):
-            keyword = keyword + keyword[i]
-    for i in range(0, len(ciphertext)):
-        if 64 < ord(ciphertext[i]) < 91:
-            if ord(keyword[i]) > 91:
-                number_letter = ord(keyword[i]) - 32
-            else:
-                number_letter = ord(keyword[i])
-            sym = ord(ciphertext[i]) - number_letter + 65
-            if sym < 65:
-                sym = sym + 26
-            plaintext = plaintext + chr(sym)
-        elif 96 < ord(ciphertext[i]) < 123:
-            if ord(keyword[i]) < 96:
-                number_letter = ord(keyword[i]) + 32
-            else:
-                number_letter = ord(keyword[i])
-            sym = ord(ciphertext[i]) - number_letter + 97
-            if sym < 97:
-                sym = sym + 26
-            plaintext = plaintext + chr(sym)
+    for i, letter in enumerate(ciphertext):
+        if "A" <= letter <= "Z":
+            plaintext += chr(ord("A") + (ord(letter) - ord(keyword[i % len(keyword)])) % 26)
+        elif "a" <= letter <= "z":
+            plaintext += chr(ord("a") + (ord(letter) - ord(keyword[i % len(keyword)])) % 26)
         else:
-            plaintext = plaintext + ciphertext[i]
+            plaintext += ciphertext[i]
     return plaintext
-
-
-# pylint: disable=missing-module-docstring
-# pylint: disable=missing-class-docstring
-# pylint: disable=missing-function-docstring
