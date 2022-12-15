@@ -75,11 +75,8 @@ def get_block(grid: tp.List[tp.List[str]], pos: tp.Tuple[int, int]) -> tp.List[s
     >>> get_block(grid, (8, 8))
     ['2', '8', '.', '.', '.', '5', '.', '7', '9']
     """
-    ans = []
-    for i in range(pos[0] - pos[0] % 3, pos[0] - pos[0] % 3 + 3):
-        for j in range(pos[1] - pos[1] % 3, pos[1] - pos[1] % 3 + 3):
-            ans.append(grid[i][j])
-    return ans
+    block_pos = ((pos[0] // 3) * 3, (pos[1] // 3) * 3)
+    return [grid[i][j] for i in range(block_pos[0], block_pos[0] + 3) for j in range(block_pos[1], block_pos[1] + 3)]
 
 
 def find_empty_positions(grid: tp.List[tp.List[str]]) -> tp.Optional[tp.Tuple[int, int]]:
@@ -177,17 +174,11 @@ def generate_sudoku(N: int) -> tp.List[tp.List[str]]:  # type: ignore
     >>> check_solution(solution)
     True
     """
-    grid = [["." for j in range(9)] for i in range(9)]
-    grid = solve(grid)  # type: ignore
-    not_visited = [(i, j) for i in range(9) for j in range(9)]
-    if N > 81:
-        N = 81
-    for i in range(81 - N):
-        ind = random.randint(0, len(not_visited) - 1)
-        a = not_visited[ind]
-        grid[a[0]][a[1]] = "."
-        del not_visited[ind]
-    return grid  # type: ignore
+    grid = [["."] * 9 for x in range(9)]
+    sudoku = solve(grid)
+    probely = list(" " * N + "." * (81 - N))
+    random.shuffle(probely)
+    return [[sudoku[i][j] if probely[i * 9 + j] == " " else "." for j in range(9)] for i in range(9)]  # type: ignore
 
 
 if __name__ == "__main__":
