@@ -180,11 +180,8 @@ def generate_sudoku(N: int) -> tp.List[tp.List[str]]:  # type: ignore
     if N > 81:
         N = 81
     for i in range(81 - N):
-        # ind = random.randint(0, len(not_visited) - 1)
         x, y = not_visited.pop()
-        # a = not_visited[ind]
         grid[x][y] = "."
-        # not_visited.pop(ind)
     return grid  # type: ignore
 
 
