@@ -2,7 +2,7 @@ import random
 from random import choice, randint
 from typing import List, Optional, Tuple, Union
 
-import pandas as pd
+import pandas as pd  # type: ignore
 
 
 def create_grid(rows: int = 15, cols: int = 15):
@@ -192,20 +192,8 @@ def encircled_exit(grid: List[List[Union[str, int]]], coord: Tuple[int, int]) ->
 
 
 def solve_maze(
-    grid: List[List[Union[str, int]]],
-) -> Tuple[List[List[Union[str, int]]], Optional[Union[Tuple[int, int], List[Tuple[int, int]]]]]:
-    """
-
-    :param grid:
-    :return:
-    """
-    # 1. проверяем, что выходов больше одного (помним, мы можем задавать их
-    # случайным образом). Если это не правда - путь найден, это координаты
-    # входа (она же координата выхода). Возвращаем лабиринт и координаты
-    # 2. если все же выходов два, проверяем, что мы не в тупике. Если в тупике,
-    # возвращаем None, пути нет
-    # 3. если мы не в тупике, реализуем нашу версию алгоритма Дейкстры,
-    # возвращаем лабиринт и путь
+    grid,
+):
 
     lnx = len(grid)
     lny = len(grid[0])
