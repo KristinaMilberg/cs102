@@ -1,9 +1,5 @@
 import curses
 import time
-from dataclasses import replace
-
-import pygame
-
 from life import GameOfLife
 from ui import UI
 
