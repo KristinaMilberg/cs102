@@ -53,8 +53,8 @@ class GUI(UI):
                 if event.type == QUIT:
                     pygame.quit()
                 if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_SPACE:
-                        pause = True
+                    if event.key == pygame.K_q:
+                        pause = not pause
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if event.button == 1:
                         x, y = pygame.mouse.get_pos()[1] // self.cell_size, pygame.mouse.get_pos()[0] // self.cell_size
