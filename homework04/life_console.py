@@ -1,5 +1,8 @@
 import curses
+import time
 from dataclasses import replace
+
+import pygame
 
 from life import GameOfLife
 from ui import UI
@@ -26,10 +29,17 @@ class Console(UI):
 
     def run(self) -> None:
         screen = curses.initscr()
-        self.draw_borders(screen)
-        self.game.create_grid(randomize=True)
+        delay = 0.3
+        screen.nodelay(True)
         while True:
+            self.draw_borders(screen)
             self.draw_grid(screen)
+            screen.refresh()
+            self.life.step()
+            time.sleep(delay)
+            if screen.getch() == 27:
+                curses.endwin()
+                break
 
 
 life = GameOfLife((80, 30), max_generations=1000)
