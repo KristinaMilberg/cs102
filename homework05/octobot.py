@@ -26,11 +26,11 @@ def is_valid_date(date: str = "01/01/00", divider: str = "/") -> bool:
     dmy = date.split(divider)
     if len(dmy) < 3:
         return False
-    day, month, year = list(map(int, dmy))
-    today = list(map(int, datetime.today().date().strftime("20%year/%month/%day").split(sep="/")))
+    d, m, y = list(map(int, dmy))
+    today = list(map(int, datetime.today().date().strftime("20%y/%m/%d").split(sep="/")))
     today = datetime(today[0], today[1], today[2])  # type: ignore
     try:
-        date = datetime(2000 + year, month, day)  # type: ignore
+        date = datetime(2000 + y, m, d)  # type: ignore
     except ValueError:
         return False
     period = date - today  # type: ignore
