@@ -46,6 +46,8 @@ def is_valid_url(url: str = "") -> bool:
         response = requests.get(url)
         if response.status_code == 200:
             return True
+        if response == "-":
+            return True
     except requests.exceptions.ConnectionError:
         return False
     return False
@@ -124,7 +126,7 @@ def choose_action(message):
 def choose_subject_action(message):
     """Выбираем действие в разделе Редактировать предметы"""
     if message.text == "Добавить предмет 🆕":
-        message = bot.send_message(message.chat.id, "Введи название и ссылку через пробел ")
+        message = bot.send_message(message.chat.id, "Введи название и ссылку через пробел или -, если ссылки нет")
         bot.register_next_step_handler(message, add_subject)
     elif message.text == "Редактировать предмет":
         worksheet, sheet, dataframe = access_current_sheet()
@@ -189,7 +191,7 @@ def add_subject(message):
     except IndexError:
         info = bot.send_message(
             message.chat.id,
-            "Пожалуйста, введите название и ссылку в одном сообщении через пробел",
+            "Пожалуйста, введи название и ссылку в одном сообщении через пробел",
         )
         bot.register_next_step_handler(info, add_subject)
 
@@ -397,9 +399,12 @@ def choose_removal_option(message):
 
 def clear_all(message):
     """Удаляем все из Google-таблицы"""
-    worksheet, sheet, dataframe = access_current_sheet()
-    sheet.del_worksheet(worksheet)
-    start(message)
+    worksheet, _, _ = access_current_sheet()  # получаем лист из функции access_current_sheet()
+    num_rows = worksheet.row_count
+    if num_rows > 1:
+        worksheet.delete_rows(2, num_rows - 1)  # удаляем все строки, кроме заголовка
+    message = f"Все значения на листе {worksheet.title} кроме заголовка были удалены.\nСсылка на таблицу: {url}"
+    bot.send_message(chat_id="6099153394", text=message)
 
 
 @bot.message_handler(commands=["start"])
@@ -410,7 +415,6 @@ def start(message):
         start_markup.row("Посмотреть дедлайны на этой неделе")
         start_markup.row("Редактировать дедлайны")
         start_markup.row("Редактировать предметы")
-        start_markup.row("Показать дисциплины")
         info = bot.send_message(message.chat.id, "Что хочешь сделать?", reply_markup=start_markup)
         bot.register_next_step_handler(info, choose_action)
     else:
