@@ -23,9 +23,7 @@ class News(Base):
 
 Base.metadata.create_all(bind=engine)
 
-if (
-    __name__ == "__main__"
-):  # создаем сессию, подключаем новости, классификатор их нумерует и
+if __name__ == "__main__":  # создаем сессию, подключаем новости, классификатор их нумерует и
     # заполняет таблицу, такая же схема коммита как в гите
     a = session()
     news_list = get_news("https://news.ycombinator.com/newest", n_pages=35)
