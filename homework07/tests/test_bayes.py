@@ -1,8 +1,8 @@
 import csv
 import string
 import unittest
-import numpy as np
 
+import numpy as np
 from bayes import NaiveBayesClassifier
 
 PATH_FOR_GIT = "/home/runner/work/cs102/homework07/data/"
