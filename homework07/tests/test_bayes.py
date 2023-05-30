@@ -54,7 +54,7 @@ class TestBayes(unittest.TestCase):
         return s.translate(translator)
 
     def test_spam(self):
-        with open("/Users/alex/Desktop/cs102/homework07/data/SMSSpamCollection", encoding="utf-8") as f:
+        with open("/Users/alex/Desktop/cs102/homework07/data/SMSSpamCollection", encoding="utf-8") as f:  # type: ignore
             data = list(csv.reader(f, delimiter="\t"))
         X, y = [], []
         for target, msg in data:
