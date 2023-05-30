@@ -1,7 +1,6 @@
 import csv
 import string
 import unittest
-
 import numpy as np
 
 from bayes import NaiveBayesClassifier
