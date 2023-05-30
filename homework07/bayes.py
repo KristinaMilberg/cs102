@@ -34,7 +34,11 @@ class NaiveBayesClassifier:
         freq = math.log(self._class_freq[clss])
 
         for feat in X.split():
-            freq += math.log((self._separated_words_in_class[feat, clss] + self.alpha) / (self._words_in_class[clss] + self.alpha * len(self._word_set)))
+            freq += math.log(
+                (self._separated_words_in_class[feat, clss] + self.alpha)
+                / (self._words_in_class[clss] + self.alpha *
+len(self._word_set))
+            )
         return freq
 
     def score(self, X_test, y_test):
