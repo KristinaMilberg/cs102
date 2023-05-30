@@ -1,12 +1,12 @@
 # создание шаблона базы данных
 from scraputils import get_news
-from sqlalchemy import Column, Integer, String, create_engine  # type: ignore
-from sqlalchemy.ext.declarative import declarative_base  # type: ignore
-from sqlalchemy.orm import sessionmaker  # type: ignore
+from sqlalchemy import Column, Integer, String, create_engine
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
 
 
-Base = declarative_base()
-engine = create_engine("sqlite:///news.db")
+Base = declarative_base()  # type: ignore
+engine = create_engine("sqlite:///news.db")  # type: ignore
 session = sessionmaker(bind=engine)
 
 # создаем таблицу на локальном хосте
