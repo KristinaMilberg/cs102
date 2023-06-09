@@ -6,8 +6,8 @@ import responses  # type: ignore
 from requests.exceptions import (  # type: ignore
     ConnectionError,
     HTTPError,
-    ReadTimeout,
-    RetryError
+    ReadTimeout,  # type: ignore
+    RetryError  # type: ignore
 )
 from vkapi.session import Session
 
