@@ -1,14 +1,8 @@
-import time
-import unittest
-
 import httpretty  # type: ignore
 import responses  # type: ignore
-from requests.exceptions import (  # type: ignore
-    ConnectionError,
-    HTTPError,
-    ReadTimeout,  # type: ignore
-    RetryError  # type: ignore
-)
+from requests.exceptions import ReadTimeout  # type: ignore
+from requests.exceptions import RetryError  # type: ignore
+from requests.exceptions import ConnectionError, HTTPError  # type: ignore
 from vkapi.session import Session
 
 
