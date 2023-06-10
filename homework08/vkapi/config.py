@@ -7,4 +7,3 @@ VK_CONFIG = {
     "client_id": "51490509",
     "target_limit": 100,
 }
-
