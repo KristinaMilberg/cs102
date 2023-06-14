@@ -2,8 +2,7 @@
 
 VK_CONFIG = {
     "domain": "https://api.vk.com/method",
-    "access_token": "vk1.a.lxvIIgxSAoPy2_o9V7H_nBA8CSOW4Emvvlcuzz1kee7eobmlx1ZVF8AXXH2lbjSAYT0mkZiHALQ-jRTIacXK7hzVV9C7kvBLWbwVjxPL6_dRJDoeMdIO5tzv32fENs_1FpMFoVBs-9hLZ1IHtA7HPYVqahjcZ539m3jmoR0_krWydRYpCaGTnR5e82vdwOpe",
-    "version": "5.126",
-    "client_id": "51490509",
+    "access_token": "vk1.a.S7khfs_DAzwHR9ODBUmDVE4Ai-b4r7aoUWevvZV3xoQEgDMZU-Wdc5jgPWXwRMiBsQCEYFh66l859--pTmLzSp8O81t0P3ChMY9NG5S9CX40EDBWChQtC2p5Mrgoz6V1Ps-JN60vbB3dF6_UaIqJt7wj1Mqb2tM0obRmzusePdU6zSoTXLharPQx06L0Ixyu",
+    "version": "5.131",
     "target_limit": 100,
 }
