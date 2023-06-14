@@ -19,12 +19,12 @@ def ego_network(
     """
     if friends is None:  # Если идентификаторы друзей не указаны
         # получаем список друзей пользователя user_id с указанием поля "nickname"
-        friends = get_friends(user_id=user_id, fields=["nickname"]).items # type: ignore
+        friends = get_friends(user_id=user_id, fields=["nickname"]).items  # type: ignore
         # Инициализируем список active_friends для хранения идентификаторов активных друзей.
         # Проходимся по каждому другу в списке друзей и проверяем, является ли он активным
         # (не деактивирован и не закрытый профиль).
         # Добавляем идентификаторы активных друзей в список active_friends.
-        active_friends = [user["id"] for user in friends if not user.get("deactivated") and not user.get("is_closed")] # type: ignore
+        active_friends = [user["id"] for user in friends if not user.get("deactivated") and not user.get("is_closed")]  # type: ignore
     else:
         # Если friends указан, присваиваем active_friends значение friends.
         active_friends = friends  # type: ignore
@@ -33,7 +33,7 @@ def ego_network(
     net = []  # Инициализируем пустой список net для хранения связей в графе.
     for item in items:  # Проходимся по каждому элементу в списке items.
         # Расширяем список net парами (item["id"], mutual), где item["id"] - идентификатор пользователя, а mutual - идентификатор общего друга.
-        net.extend([(item["id"], mutual) for mutual in item["common_friends"]]) # type: ignore
+        net.extend([(item["id"], mutual) for mutual in item["common_friends"]])  # type: ignore
     # Возвращаем список связей в графе net.
     return net
 
