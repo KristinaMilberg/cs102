@@ -1,5 +1,6 @@
 import typing as tp
 from collections import defaultdict
+
 import community # type: ignore
 import matplotlib.pyplot as plt # type: ignore
 import networkx as nx # type: ignore
