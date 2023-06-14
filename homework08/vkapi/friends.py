@@ -1,10 +1,10 @@
-import dataclasses
-import math
 import time
 import typing as tp
+
+import dataclasses
+import math
+
 from typing import List, Optional
-
-
 from vkapi import session
 from vkapi.config import VK_CONFIG
 from vkapi.exceptions import APIError
